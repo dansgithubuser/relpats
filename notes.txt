@@ -5,6 +5,7 @@ Regarding output of g.py
 		Why "as far as [YOU] know"?
 	"a bit different, a bit off"
 		Turning a bit off could give a non-one-to-one mapping
+		There doesn't seem to be a stuck-off bit, at least in a consistent position per word
 	"two red eyes"
 		Hinting at the red channel of the original message?
 	"the sequence of letters r e l p a t s _ e h t happened to emerge more than once"
