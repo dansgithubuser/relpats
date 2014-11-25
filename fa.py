@@ -1,24 +1,30 @@
-import helpers
+import histogram
 import glob, random
 
-corpus=helpers.Histogram()
+def analyze_transform(corpus, input, transform):
+	cipher=[]
+	for x in words: cipher.append(transform(x))
+	h=histogram.Histogram()
+	h.add(cipher)
+	print corpus.matched_frequency_distance(h)
+	return cipher, h
+
+corpus=histogram.Histogram()
 for file_name in glob.glob("books/*.txt"):
 	with open(file_name) as file:
 		corpus.add(file.read())
 
 with open("input.txt") as file: words=file.read().split()
-ciphers=[]
-histograms=[]
+channels=[]
 for i in range(3):
-	ciphers.append([])
-	histograms.append(helpers.Histogram())
-for i in range(len(ciphers)):
-	for x in words: ciphers[i].append(int(x[i*2:i*2+2], 16))
-	histograms[i].add(ciphers[i])
-	print i, corpus.matched_frequency_distance(histograms[i])
+	transform=lambda x: int(x[i*2:i*2+2], 16)
+	print i,
+	channels.append(analyze_transform(corpus, words, transform))
 
-noise=[]
-for i in range(2296): noise.append(random.randint(0, 256))
-h=helpers.Histogram()
-h.add(noise)
-print "baseline", corpus.matched_frequency_distance(h)
+print "noise",
+noise, noiseHistogram=analyze_transform(corpus, input, lambda x: random.randint(0, 255))
+
+analyze_transform(corpus, input, lambda x: int(x[0:2], 16)^int(x[4:6], 16))
+analyze_transform(corpus, input, lambda x: int(x[0:2], 16)^int(x[2:4], 16))
+analyze_transform(corpus, input, lambda x: int(x[4:6], 16)^int(x[2:4], 16))
+analyze_transform(corpus, input, lambda x: int(x[4:6], 16)^int(x[2:4], 16)^int(x[0:2], 16))
