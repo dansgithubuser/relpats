@@ -14,3 +14,5 @@ Regarding output of g.py
 		Should be "there"
 	"there is nothing random about it"
 		Produced by a prg?
+	"the sequence of letters r e l p a t s _ e h t happened to emerge more than once"
+		vigenere cipher using relpats_eht as keyword?
