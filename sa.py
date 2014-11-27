@@ -3,7 +3,7 @@ import random
 
 def analyze_transform(input, transform):
 	cipher=[]
-	for x in words: cipher.append(transform(x))
+	for x in input: cipher.append(transform(x))
 	r=sequence.repetition(cipher)
 	print sequence.repetition_value(r)
 	return cipher, r
@@ -19,9 +19,9 @@ print channels[0][1]
 print channels[2][1]
 
 print "noise",
-noise, noiseRepetitions=analyze_transform(input, lambda x: chr(random.randint(0, 255)))
+noise, noiseRepetitions=analyze_transform(words, lambda x: chr(random.randint(0, 255)))
 
-analyze_transform(input, lambda x: chr(int(x[0:2], 16)^int(x[4:6], 16)))
-analyze_transform(input, lambda x: chr(int(x[0:2], 16)^int(x[2:4], 16)))
-analyze_transform(input, lambda x: chr(int(x[4:6], 16)^int(x[2:4], 16)))
-analyze_transform(input, lambda x: chr(int(x[4:6], 16)^int(x[2:4], 16)^int(x[0:2], 16)))
+analyze_transform(words, lambda x: chr(int(x[0:2], 16)^int(x[4:6], 16)))
+analyze_transform(words, lambda x: chr(int(x[0:2], 16)^int(x[2:4], 16)))
+analyze_transform(words, lambda x: chr(int(x[4:6], 16)^int(x[2:4], 16)))
+analyze_transform(words, lambda x: chr(int(x[4:6], 16)^int(x[2:4], 16)^int(x[0:2], 16)))
